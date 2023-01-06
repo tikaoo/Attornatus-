@@ -1,0 +1,29 @@
+package attornatus.controller;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import attornatus.controllers.PessoaController;
+import attornatus.service.PessoaService;
+
+@WebMvcTest
+public class PessoaControllerTest {
+	
+	@Autowired
+	PessoaController pessoaController;
+	
+	@MockBean
+	PessoaService	pessoaService;
+	
+	@BeforeEach
+	public void setup() {
+		standaloneSetup(this.pessoaController);
+	}
+
+	
+	
+	
+
+}

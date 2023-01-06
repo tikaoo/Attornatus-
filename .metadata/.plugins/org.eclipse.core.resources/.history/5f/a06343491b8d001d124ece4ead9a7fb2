@@ -1,0 +1,85 @@
+package attornatus.controllers;
+
+import java.net.URI;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import attornatus.model.Pessoa;
+import attornatus.service.PessoaService;
+
+@CrossOrigin
+@RestController
+@RequestMapping("pessoas")
+public class PessoaController {
+
+	@Autowired
+	PessoaService pessoaService;
+
+	@GetMapping
+	public List<Pessoa> listarPessoas() {
+		List<Pessoa> pessoas = pessoaService.listarPessoas();
+		return pessoas;
+	}
+
+	@GetMapping("/pessoa/{idPessoa}")
+	public ResponseEntity<Pessoa> consultarPessoaId(@PathVariable Integer idPessoa) {
+		Pessoa pessoa = pessoaService.consultarPessoaId(idPessoa);
+		return ResponseEntity.ok().body(pessoa);
+	}
+
+	@GetMapping("/pessoa/{nome}")
+	public ResponseEntity<Pessoa> consultarPessoaNome(@PathVariable String nome) {
+		Pessoa pessoa = pessoaService.consultarPessoaNome(nome);
+		return ResponseEntity.ok().body(pessoa);
+	}
+
+	@GetMapping("/pessoa/{nascimento}")
+	public ResponseEntity<Pessoa> consultarPessoaData(@PathVariable Date data) {
+		Pessoa pessoa = pessoaService.consultarPessoaData(data);
+		return ResponseEntity.ok().body(pessoa);
+	}
+
+	@PostMapping("/pessoa")
+	public ResponseEntity<Pessoa> criarPessoa(@RequestBody Pessoa pessoa) {
+		pessoa = pessoaService.criarPessoa(pessoa);
+
+		URI novaUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(pessoa.getIdPessoa()).toUri();
+
+		return ResponseEntity.created(novaUri).body(pessoa);
+	}
+	
+	@PutMapping("/pessoa/{idPessoa}")
+	public ResponseEntity<Pessoa> editarPessoa(@PathVariable Integer idPessoa, @RequestBody Pessoa pessoa) {
+		pessoa.setIdPessoa(idPessoa);
+		pessoa = pessoaService.editarPessoa(pessoa);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@DeleteMapping("/pessoa/{idPessoa}")
+	public ResponseEntity<Void> excluirPessoaId(@PathVariable Integer idPessoa){
+		pessoaService.excluirPessoaId(idPessoa);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@DeleteMapping("/pessoa/{nome}")
+	public ResponseEntity<Void> excluirPessoaNome(@PathVariable String nome){
+		pessoaService.excluirPessoaNome(nome);
+		return ResponseEntity.noContent().build();
+	}
+
+
+}

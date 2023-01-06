@@ -1,0 +1,5 @@
+package attornatus.controllers;
+
+public class EnderecoController {
+
+}

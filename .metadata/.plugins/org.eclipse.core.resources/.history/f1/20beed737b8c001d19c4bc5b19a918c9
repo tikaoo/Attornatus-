@@ -1,0 +1,63 @@
+package model;
+
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class Pessoa {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(nullable = false, length = 100)
+	private String nome;
+	
+	@DateTimeFormat(pattern="dd-MM-yyyy")
+	@Column(columnDefinition = "date", nullable = false)
+	private Date dataDeNascimento;
+
+	@OneToOne
+	@JoinColumn(name = "idEndereco", unique = true)
+	private Endereco endereco;
+		
+	
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Date getDataDeNascimento() {
+		return dataDeNascimento;
+	}
+
+	public void setDataDeNascimento(Date dataDeNascimento) {
+		this.dataDeNascimento = dataDeNascimento;
+	}
+	
+	
+	
+	
+
+}

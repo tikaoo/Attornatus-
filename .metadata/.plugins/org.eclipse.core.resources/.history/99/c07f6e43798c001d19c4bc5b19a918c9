@@ -1,0 +1,17 @@
+package model;
+
+import java.util.Date;
+
+public class Pessoa {
+	
+	private Integer id;
+	
+	private String nome;
+	
+	private Date dataDeNascimento;
+	
+	
+	
+	
+
+}

@@ -1,0 +1,16 @@
+package model;
+
+public class Endereço {
+	
+	private Integer idEndereco;
+	
+	private String Logradouro;
+	
+	private String cep;
+	
+	private int numero;
+	
+	private String cidade;
+	
+	
+}

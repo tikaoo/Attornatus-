@@ -1,0 +1,30 @@
+package attornatus.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import attornatus.model.Pessoa;
+import attornatus.repository.PessoaRepository;
+
+@Service
+public class PessoaService {
+	
+	@Autowired
+	PessoaRepository pessoaRepository;
+	
+	// listar todas as pessoas
+	public List<Pessoa> listarPessoas(){
+		return pessoaRepository.findAll();
+	}
+	
+	// listar uma pessoa pelo id
+	public Pessoa mostrarUmaPessoa(Integer idPessoa) {
+		Optional<Pessoa> pessoa = pessoaRepository.findById(idPessoa);
+		return pessoa.orElseThrow();
+	}
+	
+	
+}

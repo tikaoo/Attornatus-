@@ -1,0 +1,5 @@
+INDEX VERSION 1.4+C:\Users\patri\OneDrive\Área de Trabalho\Attornatus - Copia\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3571602700.index
+2513020863.index
+1797809645.index
+1472494324.index

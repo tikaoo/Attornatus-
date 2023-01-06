@@ -1,0 +1,60 @@
+package attornatus.service;
+
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import attornatus.model.Pessoa;
+import attornatus.repository.PessoaRepository;
+
+@Service
+public class PessoaService {
+
+	@Autowired
+	PessoaRepository pessoaRepository;
+
+	// listar todas as pessoas
+	public List<Pessoa> listarPessoas() {
+		return pessoaRepository.findAll();
+	}
+
+	// consultar uma pessoa pelo id
+	public Pessoa consultarPessoaId(Integer idPessoa) {
+		Optional<Pessoa> pessoa = pessoaRepository.findById(idPessoa);
+		return pessoa.orElseThrow();
+	}
+
+	// consultar uma pessoa pelo nome
+	public Pessoa consultarPessoaNome(String nome) {
+		Optional<Pessoa> pessoa = pessoaRepository.findByNome(nome);
+		return pessoa.orElseThrow();
+	}
+
+	// criar uma pessoa, limpando o id por precaução
+	public Pessoa criarPessoa(Pessoa pessoa) {
+		pessoa.setIdPessoa(null);
+		return pessoaRepository.save(pessoa);
+	}
+
+	// editar uma pessoa já cadastrada
+	public Pessoa editarPessoa(Pessoa pessoa) {
+		
+		consultarPessoaNome(pessoa.getNome());
+		return pessoaRepository.save(pessoa);
+	}
+
+	// excluir uma pessoa pelo seu id
+	public void excluirPessoaId(Integer idPessoa) {
+		consultarPessoaId(idPessoa);
+		pessoaRepository.deleteById(idPessoa);
+	}
+	
+	// excluir uma pessoa pelo nome
+		public void excluirPessoaNome(String nome) {
+			consultarPessoaNome(nome);
+			pessoaRepository.deleteByNome(nome);
+		}
+}

@@ -1,0 +1,7 @@
+package attornatus.repository;
+
+public interface PessoaRepository {
+	
+	
+
+}

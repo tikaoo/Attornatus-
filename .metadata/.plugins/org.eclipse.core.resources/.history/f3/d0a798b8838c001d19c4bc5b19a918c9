@@ -1,0 +1,11 @@
+package attornatus.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import attornatus.model.Pessoa;
+
+public interface PessoaRepository extends JpaRepository <Pessoa, Integer> {
+	
+	
+
+}

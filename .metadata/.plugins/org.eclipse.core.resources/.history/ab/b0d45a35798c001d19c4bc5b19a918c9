@@ -1,0 +1,57 @@
+package model;
+
+import java.util.Objects;
+
+public class Pessoa {
+	
+	private int id;
+	
+	private String nome;
+	
+	private String dataDeNascimento;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getDataDeNascimento() {
+		return dataDeNascimento;
+	}
+
+	public void setDataDeNascimento(String dataDeNascimento) {
+		this.dataDeNascimento = dataDeNascimento;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dataDeNascimento, nome);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pessoa other = (Pessoa) obj;
+		return Objects.equals(dataDeNascimento, other.dataDeNascimento) && Objects.equals(nome, other.nome);
+	}
+	
+	
+	
+
+}

@@ -1,0 +1,19 @@
+package attornatus.repository;
+
+import java.util.Date;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import attornatus.model.Pessoa;
+
+@Repository
+public interface PessoaRepository extends JpaRepository <Pessoa, Integer> {
+	
+	Optional<Pessoa> findByNome(String nome);
+	Optional<Pessoa> findByEndereco(String endereco);
+	Optional<Pessoa> findByNascimento(Date nascimento);
+	
+
+}

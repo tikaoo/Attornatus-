@@ -1,0 +1,48 @@
+package attornatus.controllers;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import attornatus.model.Pessoa;
+import attornatus.service.PessoaService;
+
+@CrossOrigin
+@RestController 
+@RequestMapping("pessoas")
+public class PessoaController {
+	
+	@Autowired
+	PessoaService pessoaService;
+	
+	@GetMapping
+	public List<Pessoa> listarPessoas(){
+		List<Pessoa> pessoas = pessoaService.listarPessoas();
+		return pessoas;
+	}
+	
+	@GetMapping("/pessoa/{idPessoa}")
+	public ResponseEntity<Pessoa> consultarPessoaId(@PathVariable Integer idPessoa){
+		Pessoa pessoa = pessoaService.consultarPessoaId(idPessoa);
+		return ResponseEntity.ok().body(pessoa);
+	}
+	@GetMapping("/pessoa/{nome}")
+	public ResponseEntity<Pessoa> consultarPessoaNome(@PathVariable String nome){
+		Pessoa pessoa = pessoaService.consultarPessoaNome(nome);
+		return ResponseEntity.ok().body(pessoa);
+	}
+	@GetMapping("/pessoa/{nascimento}")
+	public ResponseEntity<Pessoa> consultarPessoaData(@PathVariable Date data){
+		Pessoa pessoa = pessoaService.consultarPessoaData(data);
+		return ResponseEntity.ok().body(pessoa);
+	}
+	
+	
+}

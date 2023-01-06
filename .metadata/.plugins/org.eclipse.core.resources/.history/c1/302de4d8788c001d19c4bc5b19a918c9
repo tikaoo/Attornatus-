@@ -1,0 +1,66 @@
+package model;
+
+import java.util.Objects;
+
+public class Endereço {
+	
+	private String Logradouro;
+	
+	private String cep;
+	
+	private int numero;
+	
+	private String cidade;
+
+	public String getLogradouro() {
+		return Logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		Logradouro = logradouro;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(Logradouro, cep, cidade, numero);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Endereço other = (Endereço) obj;
+		return Objects.equals(Logradouro, other.Logradouro) && Objects.equals(cep, other.cep)
+				&& Objects.equals(cidade, other.cidade) && numero == other.numero;
+	}
+	
+	
+}

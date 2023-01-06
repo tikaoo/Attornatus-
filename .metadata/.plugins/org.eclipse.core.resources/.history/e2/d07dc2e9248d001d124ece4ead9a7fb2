@@ -1,0 +1,98 @@
+package attornatus.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+
+@Entity
+public class Endereco {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idEndereco;
+
+	@Column(nullable = false, length = 100)
+	private String logradouro;
+
+	@Column(nullable = false, length = 100)
+	private String cep;
+
+	@Column(nullable = false, length = 100)
+	private int numero;
+
+	@Column(nullable = false, length = 100)
+	private String cidade;
+
+	
+	@OneToMany
+	@JoinColumn(name = "idPessoa")
+	private Pessoa pessoa;
+	
+	@Enumerated(EnumType.STRING)
+	private StatusEndereco status;
+
+	public Integer getIdEndereco() {
+		return idEndereco;
+	}
+
+	public void setIdEndereco(Integer idEndereco) {
+		this.idEndereco = idEndereco;
+	}
+	
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public StatusEndereco getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusEndereco status) {
+		this.status = status;
+	}
+
+}

@@ -1,0 +1,48 @@
+package attornatus.controller;
+
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+
+import attornatus.controllers.PessoaController;
+import attornatus.model.Pessoa;
+import attornatus.service.PessoaService;
+import io.restassured.http.ContentType;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.standaloneSetup;
+import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
+
+@WebMvcTest
+public class PessoaControllerTest {
+
+	@Autowired
+	PessoaController pessoaController;
+
+	@MockBean
+	PessoaService pessoaService;
+
+	@BeforeEach
+	public void setup() {
+		standaloneSetup(this.pessoaController);
+	}
+
+	@Test
+	public void deveRetornarSucesso_QuandoBuscarPessoa() {
+
+		when(this.pessoaService.listarPessoas())
+					.thenReturn((List<Pessoa>)		
+		given()
+			.accept(ContentType.JSON)
+		.when()
+			.get("/filmes/{codigo}", 1L)
+		.then()
+			.statusCode(HttpStatus.OK.value()));
+	}
+
+}
