@@ -6,7 +6,8 @@ Este projeto foi criado para a participação no processo seletivo da Empresa At
 O projeto está dividido em uma estrutura MVC.
 O projeto foi construído com Spring Boot 4 na linguagem Java. 
 Existe também uma camada de banco de dados desenvolvida com H2 (banco em mamória) para persistência de dados  das entidades  durante a execução da aplicação.
-OBS:Foram criados getters e setters  das duas entidades, porém usando a biblioteca do Lombok e a anotação @Data não seria necessário, porém como não havia instrução se poderia ou não usar o lombok resolvi não utilizá-lo. 
+
+OBS:Foram criados getters e setters  das duas entidades, contudo usando a biblioteca Lombok e a anotação @Data não seria necessário, porém como não havia instrução se poderia ou não usar o lombok resolvi não utilizá-lo. 
 
 # Endpoints da API
 
